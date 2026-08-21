@@ -1,28 +1,54 @@
 import type {ReactNode} from 'react';
-import clsx from 'clsx';
 import Link from '@docusaurus/Link';
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import useBaseUrl from '@docusaurus/useBaseUrl';
 import Layout from '@theme/Layout';
-import HomepageFeatures from '@site/src/components/HomepageFeatures';
 import Heading from '@theme/Heading';
 
 import styles from './index.module.css';
 
 function HomepageHeader() {
-  const {siteConfig} = useDocusaurusContext();
+  const heroImageUrl = useBaseUrl('/img/usthing-devices.png');
+
   return (
-    <header className={clsx('hero hero--primary', styles.heroBanner)}>
-      <div className="container">
-        <Heading as="h1" className="hero__title">
-          {siteConfig.title}
-        </Heading>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
-        <div className={styles.buttons}>
-          <Link
-            className="button button--secondary button--lg"
-            to="/docs/intro">
-            Docusaurus Tutorial - 5min ⏱️
-          </Link>
+    <header className={styles.heroBanner}>
+      <div className={`container ${styles.heroContainer}`}>
+        <div className={styles.heroCopy}>
+          <Heading as="h1" className={styles.heroTitle}>
+            Make every day at <span>HKUST</span> simpler.
+          </Heading>
+          <p className={styles.heroSubtitle}>
+            Find the guides, references, and answers you need to get more from
+            USThing on mobile and the web.
+          </p>
+          <div className={styles.buttons}>
+            <Link className={styles.primaryButton} to="/docs/intro">
+              Explore the docs <span aria-hidden="true">→</span>
+            </Link>
+            <Link
+              className={styles.secondaryButton}
+              href="https://app.usthing.xyz">
+              Open USThing
+            </Link>
+          </div>
+          <p className={styles.heroNote}>
+            Student-built <span aria-hidden="true">•</span> All-in-one{' '}
+            <span aria-hidden="true">•</span> Made for HKUST
+          </p>
+        </div>
+        <div className={styles.heroVisual}>
+          <div className={styles.heroGlow} />
+          <img
+            className={styles.heroImage}
+            src={heroImageUrl}
+            alt="USThing dashboard and mobile app"
+            fetchPriority="high"
+          />
+          <div className={styles.visualBadge}>
+            <span className={styles.badgeIcon} aria-hidden="true">
+              ✦
+            </span>
+            Built around student life
+          </div>
         </div>
       </div>
     </header>
@@ -30,15 +56,11 @@ function HomepageHeader() {
 }
 
 export default function Home(): ReactNode {
-  const {siteConfig} = useDocusaurusContext();
   return (
     <Layout
-      title={`Hello from ${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />">
+      title="Documentation"
+      description="Guides and resources for USThing, the student-driven all-in-one app for HKUST students.">
       <HomepageHeader />
-      <main>
-        <HomepageFeatures />
-      </main>
     </Layout>
   );
 }
