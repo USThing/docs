@@ -1,0 +1,60 @@
+---
+sidebar_position: 3
+title: Study Planner integration
+description: Use Semester Planner and Graduation Tracker courses as timetable search sources.
+---
+
+# Study Planner integration
+
+Timetable Planner reads your Semester Planner and Graduation Tracker plans and turns them into reusable course filters. This lets you move from long-term degree planning to a section-level timetable without copying course codes one by one.
+
+The integration is read-only: changing a timetable does not add, remove, or rearrange courses in a Semester Planner or Graduation Tracker plan.
+
+## Use a Semester Planner term
+
+1. Clear the timetable course search.
+2. Under **Study Planner**, select **Semester Planner**.
+3. Choose **All plans** or one Semester Planner plan.
+4. Choose a planned term, such as Year 2 Fall.
+5. Select **Show courses**.
+
+The selected source becomes a search chip. You can combine it with text, class-time, Common Core, bookmark, or other source filters.
+
+If no Semester Planner plan exists, select **Open Semester Planner**, create a plan, and add courses to at least one planned term.
+
+## Use Graduation Tracker courses
+
+1. Clear the timetable course search.
+2. Under **Study Planner**, select **Graduation Tracker**.
+3. Choose **All plans** or one Graduation Tracker plan.
+4. Choose one of these sources:
+
+   - **Planned courses** for courses already placed in the graduation plan;
+   - a curriculum requirement for courses that can satisfy it; or
+   - a specific area when the selected requirement contains areas.
+
+5. Select **Show courses**.
+
+If no Graduation Tracker plan exists, select **Open Graduation Tracker** and create one first.
+
+## Combine sources with timetable constraints
+
+Study Planner sources participate in the same Boolean search as course text and time filters.
+
+For example:
+
+- Add a Semester Planner chip, then type `COMP` to keep only COMP courses from that planned term.
+- Add a Graduation Tracker requirement chip, then add `LEC@Tue,Thu` to find compatible lecture combinations that meet on those days.
+- Select a source chip on a result to add that exact source to your current expression.
+
+The result's source chips show why a course matched. Hover over a chip to see its full plan, curriculum, requirement, or area hierarchy.
+
+## Refresh integration data
+
+Timetable Planner loads Study Planner data when the page opens. After changing a Semester Planner or Graduation Tracker plan, return to Timetable Planner and select **Reload course data** in the top-right toolbar.
+
+Reloading refreshes course schedule data, Study Planner sources, and the current timetable plan. Save timetable changes first if you want them persisted immediately.
+
+## Offered and unoffered courses
+
+The integration can surface courses referenced by your Study Planner even when they are not offered in the timetable plan's academic term. These courses are labelled **Not offered in the selected timetable term** and cannot be added. Change to a timetable plan for another academic term only by creating or opening a plan for that term.

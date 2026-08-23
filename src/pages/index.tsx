@@ -21,7 +21,10 @@ function HomepageHeader() {
             USThing on mobile and the web.
           </p>
           <div className={styles.buttons}>
-            <Link className={styles.primaryButton} to="/docs/intro">
+            <Link
+              className={styles.primaryButton}
+              to="/docs/dashboard/timetable-planner"
+            >
               Explore the docs <span aria-hidden="true">→</span>
             </Link>
             <Link
@@ -36,7 +39,6 @@ function HomepageHeader() {
           </p>
         </div>
         <div className={styles.heroVisual}>
-          <div className={styles.heroGlow} />
           <img
             className={styles.heroImage}
             src={heroImageUrl}

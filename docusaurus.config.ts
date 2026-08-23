@@ -90,17 +90,11 @@ const config: Config = {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'left',
-          label: 'Documentation',
+          label: 'Dashboard',
         },
-        {to: '/blog', label: 'Updates', position: 'left'},
         {
           href: 'https://usthing.xyz',
           label: 'USThing',
-          position: 'right',
-        },
-        {
-          href: 'https://github.com/USThing',
-          label: 'GitHub',
           position: 'right',
         },
         {
@@ -118,12 +112,8 @@ const config: Config = {
           title: 'Docs',
           items: [
             {
-              label: 'Documentation',
-              to: '/docs/intro',
-            },
-            {
-              label: 'Product updates',
-              to: '/blog',
+              label: 'Dashboard',
+              to: '/docs/dashboard/timetable-planner',
             },
           ],
         },
@@ -143,10 +133,6 @@ const config: Config = {
         {
           title: 'Community',
           items: [
-            {
-              label: 'GitHub',
-              href: 'https://github.com/USThing',
-            },
             {
               label: 'Instagram',
               href: 'https://www.instagram.com/hkust.usthing/',

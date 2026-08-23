@@ -232,7 +232,7 @@ body {
   line-height: 1.08;
 }
 
-.theme-doc-markdown h2 {
+.theme-doc-markdown h2:not(.theme-doc-card-heading) {
   margin-top: 2.6rem;
   border-bottom: 1px solid var(--ifm-color-emphasis-200);
   padding-bottom: 0.55rem;
