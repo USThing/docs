@@ -1,0 +1,121 @@
+---
+sidebar_position: 4
+title: UST.space ratings extension
+description: Install the Chrome extension that retrieves, displays, filters, and saves UST.space course ratings in Timetable Planner.
+---
+
+# UST.space ratings extension
+
+The **UST.space Ratings for USThing** Chrome extension retrieves aggregate course ratings from [UST.space](https://ust.space/) and sends them to [Timetable Planner](https://app.usthing.xyz/timetable-planner). Timetable Planner displays the ratings beside matching courses and saves successful results to your USThing account.
+
+The extension currently installs from source as an unpacked Chrome extension. It requires Chrome 102 or later.
+
+## Set up the extension
+
+### 1. Build the extension
+
+Install [Git](https://git-scm.com/) and [Bun](https://bun.sh/docs/installation), then run:
+
+```bash
+git clone https://github.com/USThing/web-dashboard.git
+cd web-dashboard
+bun install
+bun run extension:build
+```
+
+The build creates `background.js` and `content.js` under `extension/ustspace-ratings/dist`.
+
+If you already have the repository, update it before rebuilding:
+
+```bash
+git pull
+bun install
+bun run extension:build
+```
+
+### 2. Load it in Chrome
+
+1. Open `chrome://extensions`.
+2. Turn on **Developer mode**.
+3. Select **Load unpacked**.
+4. Choose the `web-dashboard/extension/ustspace-ratings` folder. Select the folder that contains `manifest.json`, not its `dist` subfolder.
+5. Confirm that **UST.space Ratings for USThing** is enabled.
+
+<!-- Screenshot placeholder: Chrome Extensions page with Developer mode, Load unpacked, and the enabled extension. Suggested file: ./img/ust-space-ratings-load-unpacked.png -->
+
+After rebuilding or pulling an update, return to `chrome://extensions`, select **Reload** on the extension card, and reload Timetable Planner.
+
+### 3. Sign in and verify the connection
+
+1. Sign in to [UST.space](https://ust.space/login).
+2. Sign in to USThing and open [Timetable Planner](https://app.usthing.xyz/timetable-planner).
+3. Reload the planner if it was already open when you enabled the extension.
+4. Search for a course. Rating badges appear beside a course after its rating is retrieved.
+
+<!-- Screenshot placeholder: Timetable Planner search results showing UST.space rating badges. Suggested file: ./img/ust-space-ratings-course-badges.png -->
+
+## Understand the rating badges
+
+A rated course shows four letter-grade badges in this order:
+
+| Position | Metric |
+| --- | --- |
+| 1 | Content |
+| 2 | Teaching |
+| 3 | Grading |
+| 4 | Workload |
+
+Hover over a badge to see the metric name, numeric aggregate score, and letter grade. A course that exists on UST.space but has no reviews shows **No reviews** instead.
+
+Ratings can appear in collapsed search results, expanded section-combination results, and Course Details. Select **View on UST.Space** in Course Details to open the source review page.
+
+## How retrieval and saving work
+
+The extension runs only on supported USThing Timetable Planner pages. It retrieves ratings automatically for course results that are currently shown and when you open Course Details.
+
+- **Search results:** after a result has been retrieved and acknowledged by the planner, the extension waits seven days before requesting that course again for the same USThing site.
+- **Course Details:** each distinct opening requests the course rating and bypasses the seven-day search interval.
+- **Saving:** rated and confirmed no-review results appear immediately, then Timetable Planner saves them to your authenticated USThing account.
+- **Fallback:** saved ratings remain visible when the extension is disabled, UST.space cannot be reached, or its session is unavailable.
+
+The seven-day record is scoped to the USThing site and course, and is shared by USThing users in the same Chrome profile.
+
+## Filter courses by rating
+
+1. Search for courses in Timetable Planner.
+2. Select **Filter by rating** above the results.
+3. Choose a minimum letter grade for any combination of **Content**, **Teaching**, **Grading**, and **Workload**.
+4. Select **Include unrated courses** if courses confirmed to have no reviews should remain visible.
+5. Select **Apply**.
+
+A rated course must meet every enabled minimum. Courses whose rating has not been retrieved remain visible so a temporary extension or network problem does not hide possible results.
+
+<!-- Screenshot placeholder: Filter by UST.space rating dialog with metric minima and Include unrated courses. Suggested file: ./img/ust-space-ratings-filter.png -->
+
+## Data and permissions
+
+The extension requests access to `https://ust.space/*` so its background worker can retrieve course reviews using the UST.space session already active in Chrome. It does not request Chrome cookie permission.
+
+Chrome extension storage contains only the last acknowledged search-fetch time for each USThing site and course. It does not retain rating payloads. Timetable Planner saves usable rating summaries and their source responses in user-scoped USThing storage.
+
+## Troubleshooting
+
+### UST.space Access Required appears
+
+Select **Sign in** in the planner warning, complete the UST.space sign-in, then return focus to the Timetable Planner tab. The extension retries after the tab regains focus.
+
+<!-- Screenshot placeholder: Timetable Planner UST.space Access Required warning and Sign in link. Suggested file: ./img/ust-space-ratings-access-required.png -->
+
+If the warning remains, check whether Chrome is blocking the extension's access to UST.space or preventing the UST.space session from being sent with cross-site requests.
+
+### No rating badges appear
+
+- Confirm that the extension is enabled at `chrome://extensions`.
+- Select **Reload** on its extension card, then reload Timetable Planner.
+- Rebuild with `bun run extension:build` and confirm that `extension/ustspace-ratings/dist` contains both generated JavaScript files.
+- Confirm that you loaded the `extension/ustspace-ratings` folder rather than `dist`.
+- Sign in to UST.space and return to the planner tab.
+
+### A search result shows an older saved rating
+
+Search retrieval is limited to once every seven days after a successful acknowledgment. Open the course's Course Details to request a fresh result without waiting for that interval.
