@@ -4,11 +4,14 @@ title: Course Search and Course Pages
 description: Find courses and explore course details, classes, grade distributions, and study plans in USThing Dashboard.
 ---
 
+import courseSearchVideo from './vid/course-search.mp4';
+import courseSearchPoster from './img/course-search-poster.png';
+
 # Course Search and Course Pages
 
-Use course search to find HKUST courses by code or title. Open a course page to explore its requirements, classes, seats, shared grade distribution, and connections to your study plans.
+Use course search to find HKUST courses by code or title. Open a course page to explore its requirements, classes, seats, grade distribution, and connections to your study plans.
 
-[Open USThing Dashboard](https://app.usthing.xyz)
+![Timetable Planner showing the course browser, weekday schedule, plan controls, and added TBA sections](./img/course-page.png)
 
 ## Find a course
 
@@ -22,6 +25,16 @@ After you sign in, course search is available:
 1. Select the search box.
 2. Enter at least two characters from a course code or title, such as `COMP 2011` or `machine learning`.
 3. Select a result to open its course page.
+
+<video
+  aria-label="Searching for machine learning and viewing matching courses"
+  controls
+  playsInline
+  preload="metadata"
+  poster={courseSearchPoster}
+  src={courseSearchVideo}
+  style={{width: '100%', height: 'auto'}}
+/>
 
 ### Keyboard shortcuts
 
@@ -40,21 +53,15 @@ The search dialog does not open over another dialog. On phones, use the search b
 ## Course page features
 
 - **Course overview:** View the description, credits, learning outcomes, requirements, and Common Core areas.
-- **Course reviews:** Open reviews on UST.space through the link beside the course title.
 - **Offering information:** See remaining quota, the last offering, and the seasons in which the course usually runs.
 - **Term selection:** Switch academic terms to view the corresponding course information, classes, and Timetable Plans.
-- **Section tabs:** Choose **All**, **Classes**, **Students**, **Grade distribution**, or **Study planners**.
 - **Classes:** Compare section times, venues, instructors, quotas, enrollment, available seats, waitlists, and remarks.
 - **Seats by term:** Compare enrollment and quota across academic terms in the **Students** tab.
 - **Grade distribution:** View combined grade statistics for a term or all terms after you opt in to grade sharing.
 - **Study planners:** Find related Graduation Plans, Semester Plans, and Timetable Plans.
-- **Curricula:** Search and sort published curricula that include the course, with badges for curricula attached to your Graduation Plans.
+- **Curricula:** Search and sort published curricula that include the course.
 
 ## Share a course
 
 1. Select **Share** beside the course title.
 2. Copy the course link, or select **Share link** to use your device’s sharing options.
-
-The shared link opens the general course page without a selected term or tab. Visitors can read the public overview, then sign in for additional information.
-
-Each signed-in viewer sees their own study plans.
